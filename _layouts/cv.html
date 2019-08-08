@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+{% assign cv = site.data.cv %}
+{% include cv_intro.html %}
+
+<main id="main" class="page-content" aria-label="Content">
+  <div class="index inner">
+    <div>{{ content }}</div>
+    <div>
+      <div class="entries">
+        {% include cv_basics.html %}
+        {% include cv_work.html %}
+        {% include cv_volunteer.html %}
+        {% include cv_education.html %}
+        {% include cv_awards.html %}
+        {% include cv_publications.html %}
+        {% include cv_skills.html %}
+        {% include cv_languages.html %}
+        {% include cv_interests.html %}
+        {% include cv_references.html %}
+      </div>
+    </div>
+  </div>
+</main>

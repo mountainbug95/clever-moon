@@ -1,0 +1,884 @@
+stackbitVersion: ~0.2.34
+ssgName: jekyll
+ssgVersion: 3.8.4
+buildCommand: gem install jekyll bundler && bundle install && bundle exec jekyll build
+publishDir: _site
+staticDir: ''
+uploadDir: images
+dataDir: _data
+pagesDir: ''
+pageLayoutKey: layout
+metadata:
+  title: Basically Basic
+  description: >-
+    A substitute for the default Minima, with a few enhancements thrown in for
+    good measure.
+  author: Michael Rose and contributors
+  authorURL: 'https://github.com/mmistakes/jekyll-theme-basically-basic'
+excludePages:
+  - example/**/*
+  - docs/**/*
+  - .github
+models:
+  config:
+    type: config
+    label: Config
+    fields:
+      - type: string
+        name: title
+        label: Site Title
+        required: true
+      - type: string
+        name: email
+        label: Email
+      - type: string
+        name: description
+        label: Description
+      - type: string
+        name: baseurl
+        label: Baseurl
+        hidden: true
+        default: /
+        description: 'The subpath of your site, e.g. /blog'
+      - type: object
+        name: author
+        label: Author
+        fields:
+          - type: string
+            name: name
+            label: Author Name
+            required: true
+          - type: string
+            name: twitter
+            label: Twitter Handle
+          - type: image
+            name: picture
+            label: Author Picture
+      - type: string
+        name: twitter_username
+        label: Twitter Username
+      - type: string
+        name: github_username
+        label: GitHub Username
+      - type: image
+        name: logo
+        label: Site Logo
+      - type: boolean
+        name: search
+        label: Enable Search
+        description: Places a site search next  to the site menu
+        default: true
+      - type: number
+        name: paginate
+        label: Paginate
+        description: The number of entries allowed per page in pagination
+        default: 10
+        required: true
+      - type: string
+        name: paginate_path
+        label: Paginate Path
+        hidden: true
+      - type: object
+        name: collections
+        label: Collections
+        hidden: true
+        fields:
+          - type: object
+            name: recipes
+            label: Recipes
+            fields:
+              - type: boolean
+                name: output
+                label: Output
+                default: true
+              - type: string
+                name: permalink
+                label: Permalink
+      - type: list
+        name: defaults
+        label: Defaults
+        hidden: true
+        items:
+          type: object
+          fields:
+            - type: object
+              name: scope
+              label: Scope
+              fields:
+                - type: string
+                  name: path
+                  label: Path
+                  required: true
+                - type: string
+                  name: type
+                  label: Type
+                  required: true
+            - type: object
+              name: values
+              label: Values
+              fields:
+                - type: string
+                  name: layout
+                  label: Layout
+                - type: boolean
+                  name: read_time
+                  label: Read Time
+                  default: true
+  cv:
+    type: data
+    label: Curriculum Vitæ data
+    file: cv.json
+    fields:
+      - type: object
+        name: basics
+        label: Basics
+        description: Basic Information
+        fields:
+          - type: string
+            name: name
+            label: Author Name
+          - type: string
+            name: label
+            label: Author Label
+            description: Displayed below the author name in the cv
+          - type: image
+            name: picture
+            label: Author Picture
+            description: A picture of the author
+          - type: string
+            name: email
+            label: Author Email
+          - type: string
+            name: phone
+            label: Author Phone Number
+          - type: string
+            name: website
+            label: Author Website
+            widget: url
+          - type: markdown
+            name: summary
+            label: Author Summary
+          - type: object
+            name: location
+            label: Author Location
+            fields:
+              - type: string
+                name: address
+                label: Address
+              - type: string
+                name: postalCode
+                label: Postal Code
+              - type: string
+                name: city
+                label: City
+              - type: string
+                name: countryCode
+                label: Country Code
+              - type: string
+                name: region
+                label: Region
+          - type: list
+            name: profiles
+            label: Profiles
+            description: Social network profiles
+            items:
+              type: object
+              labelField: network
+              fields:
+                - type: string
+                  name: network
+                  label: Network
+                  required: true
+                - type: string
+                  name: username
+                  label: Username
+                  required: true
+                - type: string
+                  name: url
+                  label: URL
+                  widget: url
+      - type: list
+        name: work
+        label: Work
+        items:
+          type: object
+          labelField: company
+          fields:
+            - type: string
+              name: company
+              label: Company Name
+              required: true
+            - type: string
+              name: position
+              label: Position
+            - type: string
+              name: website
+              label: Company Website
+              widget: url
+            - type: date
+              name: startDate
+              label: Start Date
+            - type: date
+              name: endDate
+              label: End Date
+            - type: text
+              name: summary
+              label: Job Summary
+            - type: list
+              name: highlights
+              label: Job Highlights
+              items:
+                type: string
+      - type: list
+        name: volunteer
+        label: Volunteer
+        items:
+          type: object
+          labelField: organization
+          fields:
+            - type: string
+              name: organization
+              label: Organization Name
+              required: true
+            - type: string
+              name: position
+              label: Position
+            - type: string
+              name: website
+              label: Organization Website
+              widget: url
+            - type: date
+              name: startDate
+              label: Start Date
+            - type: date
+              name: endDate
+              label: End Date
+            - type: text
+              name: summary
+              label: Volunteer Summary
+            - type: list
+              name: highlights
+              label: Volunteer Highlights
+              items:
+                type: string
+      - type: list
+        name: education
+        label: Education
+        items:
+          type: object
+          labelField: institution
+          fields:
+            - type: string
+              name: institution
+              label: Institution Name
+              required: true
+            - type: string
+              name: area
+              label: Area
+            - type: string
+              name: studyType
+              label: Study Type
+            - type: date
+              name: startDate
+              label: Start Date
+            - type: date
+              name: endDate
+              label: End Date
+            - type: string
+              name: gpa
+              label: GPA
+            - type: list
+              name: courses
+              label: Courses
+              items:
+                type: string
+                labelField: text
+                fields:
+                  - type: string
+                    name: text
+                    label: Text
+                    required: true
+      - type: list
+        name: awards
+        label: Awards
+        items:
+          type: object
+          labelField: title
+          fields:
+            - type: string
+              name: title
+              label: Award Title
+              required: true
+            - type: date
+              name: date
+              label: Date
+            - type: string
+              name: awarder
+              label: Awarder
+            - type: markdown
+              name: summary
+              label: Award Summary
+      - type: list
+        name: publications
+        label: Publications
+        items:
+          type: object
+          labelField: name
+          fields:
+            - type: string
+              name: name
+              label: Publication Name
+              required: true
+            - type: string
+              name: publisher
+              label: Publisher
+            - type: date
+              name: releaseDate
+              label: Release Date
+            - type: string
+              name: website
+              label: Publication Website
+              widget: url
+            - type: markdown
+              name: summary
+              label: Publication Summary
+      - type: list
+        name: skills
+        label: Skills
+        items:
+          type: object
+          labelField: name
+          fields:
+            - type: string
+              name: name
+              label: Skill Name
+              required: true
+            - type: string
+              name: level
+              label: Skill Level
+            - type: list
+              name: keywords
+              label: Keywords
+              items:
+                type: string
+      - type: list
+        name: languages
+        label: Languages
+        items:
+          type: object
+          labelField: language
+          fields:
+            - type: string
+              name: language
+              label: Language
+              required: true
+            - type: string
+              name: fluency
+              label: Fluency
+      - type: list
+        name: interests
+        label: Interests
+        items:
+          type: object
+          labelField: name
+          fields:
+            - type: string
+              name: name
+              label: Interest Name
+              required: true
+            - type: list
+              name: keywords
+              label: Keywords
+              items:
+                type: string
+      - type: list
+        name: references
+        label: References
+        items:
+          type: object
+          labelField: name
+          fields:
+            - type: string
+              name: name
+              label: Reference Name
+              required: true
+            - type: markdown
+              name: reference
+              label: Reference
+  theme:
+    type: data
+    label: Theme Data
+    description: General data for the theme
+    file: theme.yml
+    fields:
+      - type: enum
+        name: skin
+        label: Skin
+        description: The skin used for the theme
+        options:
+          - default
+          - night
+          - plum
+          - sea
+          - soft
+          - steel
+        required: true
+        default: default
+      - type: object
+        name: t
+        label: General Text
+        description: >-
+          The text displayed in different buttons/elements throughout the
+          template
+        fields:
+          - type: string
+            name: skip_links
+            label: Skip Links
+            default: text not set
+          - type: string
+            name: skip_primary_nav
+            label: Skip Primary Nav
+            default: text not set
+          - type: string
+            name: skip_content
+            label: Skip Content
+            default: text not set
+          - type: string
+            name: skip_footer
+            label: Skip Footer
+            default: text not set
+          - type: string
+            name: menu
+            label: Menu
+            default: text not set
+          - type: string
+            name: search
+            label: Search
+            default: text not set
+          - type: string
+            name: site_search
+            label: Site Search
+            default: text not set
+          - type: string
+            name: results_found
+            label: Results Found
+            default: text not set
+          - type: string
+            name: search_placeholder_text
+            label: Search Placeholder Text
+            default: text not set
+          - type: string
+            name: home
+            label: Home
+            default: text not set
+          - type: string
+            name: newer
+            label: Newer
+            default: text not set
+          - type: string
+            name: older
+            label: Older
+            default: text not set
+          - type: string
+            name: email
+            label: Email
+            default: text not set
+          - type: string
+            name: subscribe
+            label: Subscribe
+            default: text not set
+          - type: string
+            name: read_more
+            label: Read More
+            default: text not set
+          - type: string
+            name: posts
+            label: Posts
+            default: text not set
+          - type: string
+            name: page
+            label: Page
+            default: text not set
+          - type: string
+            name: of
+            label: Of
+            default: text not set
+          - type: string
+            name: min_read
+            label: Min Read
+            default: text not set
+          - type: string
+            name: present
+            label: Present
+            default: text not set
+      - type: list
+        name: google_fonts
+        label: Google Fonts
+        items:
+          type: object
+          labelField: name
+          fields:
+            - type: string
+              name: name
+              label: Font Name
+              required: true
+            - type: string
+              name: weights
+              label: Font Weights
+              description: Must be a comma delimited list
+              required: true
+              default: '400,400i,600,600i'
+      - type: list
+        name: navigation_pages
+        label: Navigation Pages
+        description: >-
+          A list of pages to be displayed in the site menu (must reference .md
+          files)
+        items:
+          type: string
+  cvpage:
+    type: page
+    label: Curriculum Vitæ Page
+    description: Curriculum vitæ page
+    singleInstance: true
+    file: cv.md
+    template: cv
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+      - type: list
+        name: actions
+        label: Action Buttons
+        items:
+          type: object
+          labelField: label
+          fields:
+            - type: string
+              name: label
+              label: Button Label
+              description: The text displayed inside the button
+              required: true
+            - type: enum
+              name: icon
+              label: Button Icon
+              description: The Icon displayed beside the button label
+              options:
+                - arrow-left
+                - arrow-right
+                - bitbucket
+                - calendar
+                - codepen
+                - download
+                - dribbble
+                - email
+                - facebook
+                - flicker
+                - github
+                - gitlab
+                - googleplus
+                - instagram
+                - lastfm
+                - linkedin
+                - pdf
+                - pinterest
+                - rss
+                - soundcloud
+                - stackoverflow
+                - stopwatch
+                - tumblr
+                - twitter
+                - xing
+                - youtube
+            - type: string
+              name: url
+              label: URL
+              widget: url
+  about:
+    type: page
+    label: About Page
+    description: The about page
+    singleInstance: true
+    file: about.md
+    template: about
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+  categories:
+    type: page
+    label: Categories Page
+    description: The categories page
+    singleInstance: true
+    file: categories.md
+    template: categories
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+      - type: string
+        name: permalink
+        label: Permalink
+        const: /categories/
+  home:
+    type: page
+    label: Home Page
+    description: The home page
+    singleInstance: true
+    file: index.html
+    template: home
+    fields:
+      - type: boolean
+        name: paginate
+        label: Paginate
+        description: Enables pagination on the page
+        default: true
+      - type: string
+        name: alt_title
+        label: Alt Title
+        description: Display this instead of the site title on the home page
+      - type: string
+        name: sub_title
+        label: Subtitle
+        description: The text displayed below the alt title (or subtitle) on the home page
+      - type: image
+        name: image
+        label: Home Image
+        description: The image displayed at the top of the home page
+      - type: markdown
+        name: introduction
+        label: Introduction
+        description: The home introduction content
+      - type: list
+        name: actions
+        label: Action Buttons
+        description: Home action buttons
+        items:
+          type: object
+          labelField: label
+          fields:
+            - type: string
+              name: label
+              label: Button Label
+              description: The text displayed inside the button
+            - type: enum
+              name: icon
+              label: Button Icon
+              description: The Icon displayed beside the button label
+              options:
+                - arrow-left
+                - arrow-right
+                - bitbucket
+                - calendar
+                - codepen
+                - download
+                - dribbble
+                - email
+                - facebook
+                - flicker
+                - github
+                - gitlab
+                - googleplus
+                - instagram
+                - lastfm
+                - linkedin
+                - pdf
+                - pinterest
+                - rss
+                - soundcloud
+                - stackoverflow
+                - stopwatch
+                - tumblr
+                - twitter
+                - xing
+                - youtube
+            - type: string
+              name: url
+              label: URL
+              widget: url
+  notfound:
+    type: page
+    label: Page
+    description: Generic page layout
+    singleInstance: true
+    file: 404.md
+    template: page
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+      - type: string
+        name: permalink
+        label: Permalink
+        const: /404.html
+  post:
+    type: page
+    label: Post
+    folder: _posts
+    template: post
+    fields:
+      - type: string
+        name: title
+        label: Post Title
+      - type: text
+        name: excerpt
+        label: Post Excerpt
+      - type: string
+        name: sub_title
+        label: Subtitle
+      - type: image
+        name: image
+        label: Hero Image
+      - type: string
+        name: excerpt_separator
+        label: Excerpt Separator
+      - type: list
+        name: categories
+        label: Categories
+        items:
+          type: string
+      - type: list
+        name: elements
+        label: Elements
+        items:
+          type: string
+      - type: list
+        name: tags
+        label: Tags
+        items:
+          type: string
+      - type: date
+        name: date
+        label: Date
+        description: just a generic date (can use future dates)
+      - type: date
+        name: last_modified_at
+        label: Date Last Modified
+  posts:
+    type: page
+    label: Posts
+    description: The posts page
+    singleInstance: true
+    file: posts.md
+    template: posts
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+      - type: string
+        name: permalink
+        label: Permalink
+        const: /posts/
+      - type: string
+        name: entries_layout
+        label: Entries Layout
+        const: list
+  tags:
+    type: page
+    label: Tags
+    description: The tags archive
+    singleInstance: true
+    file: tags.md
+    template: tags
+    fields:
+      - type: string
+        name: title
+        label: Page Title
+        required: true
+      - type: string
+        name: permalink
+        label: Permalink
+        const: /tags/
+  tag:
+    type: page
+    label: Tag
+    description: An individual tag page
+    template: tag
+    folder: _tags
+    fields:
+      - type: string
+        name: title
+        label: Tag Title
+        required: true
+      - type: string
+        name: permalink
+        label: Permalink
+        default: /tags/tag_name
+      - type: string
+        name: taxonomy
+        label: Taxonomy
+  collection:
+    type: page
+    label: Collection
+    description: A collection of pages
+    template: collection
+    folder: _collections
+    fields:
+      - type: string
+        name: title
+        label: Collection Title
+        required: true
+      - type: string
+        name: permalink
+        label: Permalink
+        default: /collection_name/
+      - type: string
+        name: collection
+        label: specify the collection being referenced
+        required: true
+        default: collection_not_specified
+      - type: string
+        name: entries_layout
+        label: Entries Layout
+        const: grid
+        hidden: true
+  category:
+    type: page
+    label: Category
+    description: A category Page
+    template: category
+    folder: _categories
+    fields:
+      - type: string
+        name: title
+        label: Category Title
+        required: true
+      - type: string
+        name: permalink
+        label: Permalink
+        default: /categories/category_name/
+      - type: string
+        name: taxonomy
+        label: Taxonomy
+  recipe:
+    type: page
+    label: Recipe
+    description: A recipie page
+    template: post
+    match: _recipes
+    fields:
+      - type: string
+        name: title
+        label: Recipe Title
+        required: true
+      - type: object
+        name: image
+        label: Recipe Image
+        fields:
+          - type: image
+            name: path
+            label: Recipe Image
+            description: The image displayed above the page content
+          - type: image
+            name: thumbnail
+            label: Recipe Thumbnail
+            description: The thumbnail image used for thr recipe
+          - type: markdown
+            name: caption
+            label: Image Caption
+            description: The caption used for the recipe image

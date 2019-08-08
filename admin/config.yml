@@ -1,0 +1,1067 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: images
+public_folder: /images
+collections:
+  - name: config
+    label: Config
+    files:
+      - name: config
+        label: Config
+        file: _config.yml
+        fields:
+          - widget: string
+            name: title
+            label: Site Title
+            required: true
+          - widget: string
+            name: email
+            label: Email
+            required: false
+          - widget: string
+            name: description
+            label: Description
+            required: false
+          - widget: hidden
+            name: baseurl
+            label: Baseurl
+            required: false
+            default: /
+            hint: 'The subpath of your site, e.g. /blog'
+          - widget: object
+            name: author
+            label: Author
+            required: false
+            fields:
+              - widget: string
+                name: name
+                label: Author Name
+                required: true
+              - widget: string
+                name: twitter
+                label: Twitter Handle
+                required: false
+              - widget: image
+                name: picture
+                label: Author Picture
+                required: false
+          - widget: string
+            name: twitter_username
+            label: Twitter Username
+            required: false
+          - widget: string
+            name: github_username
+            label: GitHub Username
+            required: false
+          - widget: image
+            name: logo
+            label: Site Logo
+            required: false
+          - widget: boolean
+            name: search
+            label: Enable Search
+            required: false
+            default: true
+            hint: Places a site search next  to the site menu
+          - widget: number
+            name: paginate
+            label: Paginate
+            required: true
+            default: 10
+            hint: The number of entries allowed per page in pagination
+            valueType: int
+          - widget: hidden
+            name: paginate_path
+            label: Paginate Path
+            required: false
+          - widget: hidden
+            name: collections
+            label: Collections
+            required: false
+          - widget: hidden
+            name: defaults
+            label: Defaults
+            required: false
+  - name: cv
+    label: Curriculum Vitæ data
+    files:
+      - name: cv
+        label: Curriculum Vitæ data
+        file: _data/cv.json
+        fields:
+          - widget: object
+            name: basics
+            label: Basics
+            required: false
+            hint: Basic Information
+            fields:
+              - widget: string
+                name: name
+                label: Author Name
+                required: false
+              - widget: string
+                name: label
+                label: Author Label
+                required: false
+                hint: Displayed below the author name in the cv
+              - widget: image
+                name: picture
+                label: Author Picture
+                required: false
+                hint: A picture of the author
+              - widget: string
+                name: email
+                label: Author Email
+                required: false
+              - widget: string
+                name: phone
+                label: Author Phone Number
+                required: false
+              - widget: string
+                name: website
+                label: Author Website
+                required: false
+              - widget: markdown
+                name: summary
+                label: Author Summary
+                required: false
+              - widget: object
+                name: location
+                label: Author Location
+                required: false
+                fields:
+                  - widget: string
+                    name: address
+                    label: Address
+                    required: false
+                  - widget: string
+                    name: postalCode
+                    label: Postal Code
+                    required: false
+                  - widget: string
+                    name: city
+                    label: City
+                    required: false
+                  - widget: string
+                    name: countryCode
+                    label: Country Code
+                    required: false
+                  - widget: string
+                    name: region
+                    label: Region
+                    required: false
+              - widget: list
+                name: profiles
+                label: Profiles
+                required: false
+                hint: Social network profiles
+                fields:
+                  - widget: string
+                    name: network
+                    label: Network
+                    required: true
+                  - widget: string
+                    name: username
+                    label: Username
+                    required: true
+                  - widget: string
+                    name: url
+                    label: URL
+                    required: false
+          - widget: list
+            name: work
+            label: Work
+            required: false
+            fields:
+              - widget: string
+                name: company
+                label: Company Name
+                required: true
+              - widget: string
+                name: position
+                label: Position
+                required: false
+              - widget: string
+                name: website
+                label: Company Website
+                required: false
+              - widget: date
+                name: startDate
+                label: Start Date
+                required: false
+              - widget: date
+                name: endDate
+                label: End Date
+                required: false
+              - widget: text
+                name: summary
+                label: Job Summary
+                required: false
+              - widget: list
+                name: highlights
+                label: Job Highlights
+                required: false
+                field:
+                  label: String
+                  name: string
+                  widget: string
+          - widget: list
+            name: volunteer
+            label: Volunteer
+            required: false
+            fields:
+              - widget: string
+                name: organization
+                label: Organization Name
+                required: true
+              - widget: string
+                name: position
+                label: Position
+                required: false
+              - widget: string
+                name: website
+                label: Organization Website
+                required: false
+              - widget: date
+                name: startDate
+                label: Start Date
+                required: false
+              - widget: date
+                name: endDate
+                label: End Date
+                required: false
+              - widget: text
+                name: summary
+                label: Volunteer Summary
+                required: false
+              - widget: list
+                name: highlights
+                label: Volunteer Highlights
+                required: false
+                field:
+                  label: String
+                  name: string
+                  widget: string
+          - widget: list
+            name: education
+            label: Education
+            required: false
+            fields:
+              - widget: string
+                name: institution
+                label: Institution Name
+                required: true
+              - widget: string
+                name: area
+                label: Area
+                required: false
+              - widget: string
+                name: studyType
+                label: Study Type
+                required: false
+              - widget: date
+                name: startDate
+                label: Start Date
+                required: false
+              - widget: date
+                name: endDate
+                label: End Date
+                required: false
+              - widget: string
+                name: gpa
+                label: GPA
+                required: false
+              - widget: list
+                name: courses
+                label: Courses
+                required: false
+                field:
+                  label: String
+                  name: string
+                  widget: string
+          - widget: list
+            name: awards
+            label: Awards
+            required: false
+            fields:
+              - widget: string
+                name: title
+                label: Award Title
+                required: true
+              - widget: date
+                name: date
+                label: Date
+                required: false
+              - widget: string
+                name: awarder
+                label: Awarder
+                required: false
+              - widget: markdown
+                name: summary
+                label: Award Summary
+                required: false
+          - widget: list
+            name: publications
+            label: Publications
+            required: false
+            fields:
+              - widget: string
+                name: name
+                label: Publication Name
+                required: true
+              - widget: string
+                name: publisher
+                label: Publisher
+                required: false
+              - widget: date
+                name: releaseDate
+                label: Release Date
+                required: false
+              - widget: string
+                name: website
+                label: Publication Website
+                required: false
+              - widget: markdown
+                name: summary
+                label: Publication Summary
+                required: false
+          - widget: list
+            name: skills
+            label: Skills
+            required: false
+            fields:
+              - widget: string
+                name: name
+                label: Skill Name
+                required: true
+              - widget: string
+                name: level
+                label: Skill Level
+                required: false
+              - widget: list
+                name: keywords
+                label: Keywords
+                required: false
+                field:
+                  label: String
+                  name: string
+                  widget: string
+          - widget: list
+            name: languages
+            label: Languages
+            required: false
+            fields:
+              - widget: string
+                name: language
+                label: Language
+                required: true
+              - widget: string
+                name: fluency
+                label: Fluency
+                required: false
+          - widget: list
+            name: interests
+            label: Interests
+            required: false
+            fields:
+              - widget: string
+                name: name
+                label: Interest Name
+                required: true
+              - widget: list
+                name: keywords
+                label: Keywords
+                required: false
+                field:
+                  label: String
+                  name: string
+                  widget: string
+          - widget: list
+            name: references
+            label: References
+            required: false
+            fields:
+              - widget: string
+                name: name
+                label: Reference Name
+                required: true
+              - widget: markdown
+                name: reference
+                label: Reference
+                required: false
+  - name: theme
+    label: Theme Data
+    files:
+      - name: theme
+        label: Theme Data
+        file: _data/theme.yml
+        fields:
+          - widget: select
+            name: skin
+            label: Skin
+            required: true
+            default: default
+            hint: The skin used for the theme
+            options:
+              - default
+              - night
+              - plum
+              - sea
+              - soft
+              - steel
+          - widget: object
+            name: t
+            label: General Text
+            required: false
+            hint: >-
+              The text displayed in different buttons/elements throughout the
+              template
+            fields:
+              - widget: string
+                name: skip_links
+                label: Skip Links
+                required: false
+                default: text not set
+              - widget: string
+                name: skip_primary_nav
+                label: Skip Primary Nav
+                required: false
+                default: text not set
+              - widget: string
+                name: skip_content
+                label: Skip Content
+                required: false
+                default: text not set
+              - widget: string
+                name: skip_footer
+                label: Skip Footer
+                required: false
+                default: text not set
+              - widget: string
+                name: menu
+                label: Menu
+                required: false
+                default: text not set
+              - widget: string
+                name: search
+                label: Search
+                required: false
+                default: text not set
+              - widget: string
+                name: site_search
+                label: Site Search
+                required: false
+                default: text not set
+              - widget: string
+                name: results_found
+                label: Results Found
+                required: false
+                default: text not set
+              - widget: string
+                name: search_placeholder_text
+                label: Search Placeholder Text
+                required: false
+                default: text not set
+              - widget: string
+                name: home
+                label: Home
+                required: false
+                default: text not set
+              - widget: string
+                name: newer
+                label: Newer
+                required: false
+                default: text not set
+              - widget: string
+                name: older
+                label: Older
+                required: false
+                default: text not set
+              - widget: string
+                name: email
+                label: Email
+                required: false
+                default: text not set
+              - widget: string
+                name: subscribe
+                label: Subscribe
+                required: false
+                default: text not set
+              - widget: string
+                name: read_more
+                label: Read More
+                required: false
+                default: text not set
+              - widget: string
+                name: posts
+                label: Posts
+                required: false
+                default: text not set
+              - widget: string
+                name: page
+                label: Page
+                required: false
+                default: text not set
+              - widget: string
+                name: of
+                label: Of
+                required: false
+                default: text not set
+              - widget: string
+                name: min_read
+                label: Min Read
+                required: false
+                default: text not set
+              - widget: string
+                name: present
+                label: Present
+                required: false
+                default: text not set
+          - widget: list
+            name: google_fonts
+            label: Google Fonts
+            required: false
+            fields:
+              - widget: string
+                name: name
+                label: Font Name
+                required: true
+              - widget: string
+                name: weights
+                label: Font Weights
+                required: true
+                default: '400,400i,600,600i'
+                hint: Must be a comma delimited list
+          - widget: list
+            name: navigation_pages
+            label: Navigation Pages
+            required: false
+            hint: >-
+              A list of pages to be displayed in the site menu (must reference
+              .md files)
+            field:
+              label: String
+              name: string
+              widget: string
+  - name: cvpage
+    label: Curriculum Vitæ Page
+    files:
+      - name: cvpage
+        label: Curriculum Vitæ Page
+        file: cv.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: list
+            name: actions
+            label: Action Buttons
+            required: false
+            fields:
+              - widget: string
+                name: label
+                label: Button Label
+                required: true
+                hint: The text displayed inside the button
+              - widget: select
+                name: icon
+                label: Button Icon
+                required: false
+                hint: The Icon displayed beside the button label
+                options:
+                  - arrow-left
+                  - arrow-right
+                  - bitbucket
+                  - calendar
+                  - codepen
+                  - download
+                  - dribbble
+                  - email
+                  - facebook
+                  - flicker
+                  - github
+                  - gitlab
+                  - googleplus
+                  - instagram
+                  - lastfm
+                  - linkedin
+                  - pdf
+                  - pinterest
+                  - rss
+                  - soundcloud
+                  - stackoverflow
+                  - stopwatch
+                  - tumblr
+                  - twitter
+                  - xing
+                  - youtube
+              - widget: string
+                name: url
+                label: URL
+                required: false
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: cv
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: about
+    label: About Page
+    files:
+      - name: about
+        label: About Page
+        file: about.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: about
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: categories
+    label: Categories Page
+    files:
+      - name: categories
+        label: Categories Page
+        file: categories.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: select
+            name: permalink
+            label: Permalink
+            required: true
+            default: /categories/
+            options:
+              - /categories/
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: categories
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: home
+    label: Home Page
+    files:
+      - name: home
+        label: Home Page
+        file: index.html
+        fields:
+          - widget: boolean
+            name: paginate
+            label: Paginate
+            required: false
+            default: true
+            hint: Enables pagination on the page
+          - widget: string
+            name: alt_title
+            label: Alt Title
+            required: false
+            hint: Display this instead of the site title on the home page
+          - widget: string
+            name: sub_title
+            label: Subtitle
+            required: false
+            hint: >-
+              The text displayed below the alt title (or subtitle) on the home
+              page
+          - widget: image
+            name: image
+            label: Home Image
+            required: false
+            hint: The image displayed at the top of the home page
+          - widget: markdown
+            name: introduction
+            label: Introduction
+            required: false
+            hint: The home introduction content
+          - widget: list
+            name: actions
+            label: Action Buttons
+            required: false
+            hint: Home action buttons
+            fields:
+              - widget: string
+                name: label
+                label: Button Label
+                required: false
+                hint: The text displayed inside the button
+              - widget: select
+                name: icon
+                label: Button Icon
+                required: false
+                hint: The Icon displayed beside the button label
+                options:
+                  - arrow-left
+                  - arrow-right
+                  - bitbucket
+                  - calendar
+                  - codepen
+                  - download
+                  - dribbble
+                  - email
+                  - facebook
+                  - flicker
+                  - github
+                  - gitlab
+                  - googleplus
+                  - instagram
+                  - lastfm
+                  - linkedin
+                  - pdf
+                  - pinterest
+                  - rss
+                  - soundcloud
+                  - stackoverflow
+                  - stopwatch
+                  - tumblr
+                  - twitter
+                  - xing
+                  - youtube
+              - widget: string
+                name: url
+                label: URL
+                required: false
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: home
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: notfound
+    label: Page
+    files:
+      - name: notfound
+        label: Page
+        file: 404.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: select
+            name: permalink
+            label: Permalink
+            required: true
+            default: /404.html
+            options:
+              - /404.html
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: page
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: post
+    label: Posts
+    folder: _posts
+    create: true
+    extension: md
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Post Title
+        required: false
+      - widget: text
+        name: excerpt
+        label: Post Excerpt
+        required: false
+      - widget: string
+        name: sub_title
+        label: Subtitle
+        required: false
+      - widget: image
+        name: image
+        label: Hero Image
+        required: false
+      - widget: string
+        name: excerpt_separator
+        label: Excerpt Separator
+        required: false
+      - widget: list
+        name: categories
+        label: Categories
+        required: false
+        field:
+          label: String
+          name: string
+          widget: string
+      - widget: list
+        name: elements
+        label: Elements
+        required: false
+        field:
+          label: String
+          name: string
+          widget: string
+      - widget: list
+        name: tags
+        label: Tags
+        required: false
+        field:
+          label: String
+          name: string
+          widget: string
+      - widget: date
+        name: date
+        label: Date
+        required: false
+        hint: just a generic date (can use future dates)
+      - widget: date
+        name: last_modified_at
+        label: Date Last Modified
+        required: false
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: post
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: post
+  - name: posts
+    label: Posts
+    files:
+      - name: posts
+        label: Posts
+        file: posts.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: select
+            name: permalink
+            label: Permalink
+            required: true
+            default: /posts/
+            options:
+              - /posts/
+          - widget: select
+            name: entries_layout
+            label: Entries Layout
+            required: true
+            default: list
+            options:
+              - list
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: posts
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: tags
+    label: Tags
+    files:
+      - name: tags
+        label: Tags
+        file: tags.md
+        fields:
+          - widget: string
+            name: title
+            label: Page Title
+            required: true
+          - widget: select
+            name: permalink
+            label: Permalink
+            required: true
+            default: /tags/
+            options:
+              - /tags/
+          - widget: hidden
+            name: layout
+            label: Layout
+            required: true
+            default: tags
+          - widget: markdown
+            name: body
+            label: Content
+            required: false
+            hint: Page content
+  - name: tag
+    label: Tags
+    folder: _tags
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Tag Title
+        required: true
+      - widget: string
+        name: permalink
+        label: Permalink
+        required: false
+        default: /tags/tag_name
+      - widget: string
+        name: taxonomy
+        label: Taxonomy
+        required: false
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: tag
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: tag
+  - name: collection
+    label: Collections
+    folder: _collections
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Collection Title
+        required: true
+      - widget: string
+        name: permalink
+        label: Permalink
+        required: false
+        default: /collection_name/
+      - widget: string
+        name: collection
+        label: specify the collection being referenced
+        required: true
+        default: collection_not_specified
+      - widget: hidden
+        name: entries_layout
+        label: Entries Layout
+        required: true
+        default: grid
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: collection
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: collection
+  - name: category
+    label: Categorys
+    folder: _categories
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Category Title
+        required: true
+      - widget: string
+        name: permalink
+        label: Permalink
+        required: false
+        default: /categories/category_name/
+      - widget: string
+        name: taxonomy
+        label: Taxonomy
+        required: false
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: category
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: category
+  - name: recipe
+    label: Recipes
+    folder: /
+    create: true
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - widget: string
+        name: title
+        label: Recipe Title
+        required: true
+      - widget: object
+        name: image
+        label: Recipe Image
+        required: false
+        fields:
+          - widget: image
+            name: path
+            label: Recipe Image
+            required: false
+            hint: The image displayed above the page content
+          - widget: image
+            name: thumbnail
+            label: Recipe Thumbnail
+            required: false
+            hint: The thumbnail image used for thr recipe
+          - widget: markdown
+            name: caption
+            label: Image Caption
+            required: false
+            hint: The caption used for the recipe image
+      - widget: hidden
+        name: layout
+        label: Layout
+        required: true
+        default: post
+      - widget: markdown
+        name: body
+        label: Content
+        required: false
+        hint: Page content
+    filter:
+      field: layout
+      value: post
